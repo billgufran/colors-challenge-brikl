@@ -1,4 +1,4 @@
-import { TColor } from "../types";
+import { TColor } from "types";
 
 /**
  * To add new colorspace, create the function to
