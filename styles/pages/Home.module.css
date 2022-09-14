@@ -6,13 +6,17 @@
 }
 
 .footer {
+  position: relative;
   display: flex;
   padding: 0 1.5rem;
-  flex: 1;
-  max-height: 65px;
-  border-top: 2px solid #ff7c2b;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer > p {
+  font-size: 0.75rem;
+  opacity: 0.6;
 }
 
 .generateButton {
@@ -21,22 +25,26 @@
   font-weight: 700;
   border-radius: 20px;
   border: none;
-  background-color: #2363e4;
+  background-color: #4580f6;
   box-shadow: 0 2px 10px 0 rgb(0 118 255 / 39%);
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-out;
   letter-spacing: 0.2px;
+  position: absolute;
+  right: 1.5rem;
+  top: -50%;
 }
 
 .generateButton:hover {
-  background-color: #1e54c9;
+  background-color: #2363e4;
   box-shadow: 0 4px 15px 0 rgb(0 118 255 / 39%);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 600px) {
   .footer {
-    border-color: #6f3fc7;
+    width: 100%;
+    flex-direction: column;
   }
 }

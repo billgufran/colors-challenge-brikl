@@ -1,0 +1,39 @@
+.progressBar {
+  --baseColor: #ff7d00;
+  --accentDarker: #e84f47;
+  --accentLighter: #fcdd04;
+
+  width: 100%;
+  background: var(--baseColor);
+  background-position: 0% 0;
+  transition: height 0.15s linear;
+}
+
+.progressBar--loading {
+  background: linear-gradient(
+        -75deg,
+        transparent 25%,
+        var(--accentLighter) 25%,
+        var(--accentLighter) 50%,
+        var(--accentDarker) 50%,
+        var(--accentDarker) 75%,
+        transparent 75%
+      )
+      0 0 / 200% 100%,
+    var(--baseColor);
+  animation: load 2s infinite linear;
+}
+
+@keyframes load {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .progressBar {
+    --baseColor: #6e3ec7;
+    --accentDarker: #ad49be;
+    --accentLighter: #e80683;
+  }
+}
