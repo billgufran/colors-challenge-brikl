@@ -1,27 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TColor } from "types";
 import styles from "styles/components/ColorBar.module.css";
 
 type ColorBarProps = TColor;
 
-const LIGHTNESS_THRESHOLD = 65;
+const LIGHTNESS_THRESHOLD = 60;
 
 const ColorBar = ({ value, type, hslComposition }: ColorBarProps) => {
-  const hslColor = hslComposition
-    ? `hsl(${hslComposition.hue}, ${hslComposition.saturation}%, ${hslComposition.lightness}%)`
-    : "";
-  const lightness = hslComposition?.lightness || 0;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lightness = hslComposition?.lightness ?? null;
+
+  const [backgroundColor, setBackgroundColor] = useState("");
+
+  useEffect(() => {
+    setBackgroundColor(value);
+
+    return () => {
+      if (containerRef?.current) {
+        containerRef.current.style.backgroundColor = "";
+      }
+    };
+  }, [value]);
 
   return (
     <div
+      ref={containerRef}
       style={{
-        backgroundColor: hslColor || value,
-        color: lightness > LIGHTNESS_THRESHOLD ? "#000" : "#fff",
+        backgroundColor,
+        color:
+          lightness === null
+            ? "inherit"
+            : lightness > LIGHTNESS_THRESHOLD
+            ? "#000"
+            : "#fff",
       }}
       className={styles.card}
     >
       <h3>{value} &rarr;</h3>
-      <p>{hslColor && type !== "hsl" ? hslColor : "—"}</p>
+      <p>
+        {hslComposition && type !== "hsl"
+          ? `hsl(${hslComposition.hue}, ${hslComposition.saturation}%, ${hslComposition.lightness}%)`
+          : "—"}
+      </p>
     </div>
   );
 };
