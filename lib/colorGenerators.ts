@@ -1,14 +1,15 @@
 import { TColor } from "types";
-import { hexToRgba, hslToRgba } from "./colorConverter";
+import { hexToHsl, rgbToHsl } from "./colorConverter";
 
 /**
  * To add new colorspace, create the function to
  * generate the color then store it inside `colorGenerators`.
  * Make sure the function return type is `Tcolor`.
  *
- * Property `rgbaComposition` is optional for easier application
- * and standardization in front-end. The value should be the
- * representation of the color in rgba space.
+ * Property `hslComposition` is optional but highly suggested
+ * for easier application and standardization in  the front-end.
+ * The value should be the representation of the color in hsl space.
+ * Check `lib/colorConverter.ts` for refernce.
  */
 
 export const colorGenerators = [
@@ -20,7 +21,7 @@ export const colorGenerators = [
 export function HexColorGenerator(): TColor {
   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-  const [red, green, blue, alpha] = hexToRgba(randomColor);
+  const [hue, saturation, lightness] = hexToHsl(randomColor);
 
   return {
     type: "hex",
@@ -30,11 +31,10 @@ export function HexColorGenerator(): TColor {
       GG: randomColor.slice(2, 4),
       BB: randomColor.slice(4, 6),
     },
-    rgbaComposition: {
-      red,
-      green,
-      blue,
-      alpha,
+    hslComposition: {
+      hue,
+      saturation,
+      lightness,
     },
   };
 }
@@ -44,6 +44,8 @@ export function RgbColorGenerator(): TColor {
   const green = Math.floor(Math.random() * 255);
   const blue = Math.floor(Math.random() * 255);
 
+  const [hue, saturation, lightness] = rgbToHsl(red, green, blue);
+
   return {
     type: "rgb",
     value: `rgb(${red}, ${green}, ${blue})`,
@@ -52,11 +54,10 @@ export function RgbColorGenerator(): TColor {
       green,
       blue,
     },
-    rgbaComposition: {
-      red,
-      green,
-      blue,
-      alpha: 1,
+    hslComposition: {
+      hue,
+      saturation,
+      lightness,
     },
   };
 }
@@ -66,8 +67,6 @@ export function HslColorGenerator(): TColor {
   const saturation = Math.floor(Math.random() * 100);
   const lightness = Math.floor(Math.random() * 100);
 
-  const [red, green, blue, alpha] = hslToRgba(hue, saturation, lightness);
-
   return {
     type: "hsl",
     value: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
@@ -76,11 +75,10 @@ export function HslColorGenerator(): TColor {
       saturation,
       lightness,
     },
-    rgbaComposition: {
-      red,
-      green,
-      blue,
-      alpha,
+    hslComposition: {
+      hue,
+      saturation,
+      lightness,
     },
   };
 }
