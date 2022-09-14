@@ -1,4 +1,4 @@
-# Brikl software engineer (Frontend - React, TypeScript) assignment.
+# Brikl software engineer (Frontend - React, TypeScript) assignment
 
 Problem: colors challenge
 
