@@ -34,10 +34,17 @@
   letter-spacing: 0.2px;
   position: absolute;
   right: 1.5rem;
-  top: -50%;
+  top: -52%;
 }
 
 .generateButton:hover {
   background-color: #2363e4;
   box-shadow: 0 4px 15px 0 rgb(0 118 255 / 39%);
+}
+
+.generateButton:disabled {
+  background-color: #b3c1d1b2;
+  box-shadow: 0 2px 10px 0 rgba(86, 98, 112, 0.39);
+  cursor: not-allowed;
+  backdrop-filter: blur(3px);
 }

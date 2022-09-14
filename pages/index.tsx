@@ -10,6 +10,7 @@ const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchColors = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/colors", {
       method: "GET",
       headers: {
@@ -18,29 +19,25 @@ const Home: NextPage = () => {
     });
 
     if (!response.ok) {
+      setIsLoading(false);
       throw new Error(`Error: ${response.status}`);
     }
 
     const data = await response.json();
+    setIsLoading(false);
     setColors(data);
   };
 
   useEffect(() => {
     try {
-      setIsLoading(true);
       fetchColors();
     } catch (error) {
       console.error(error);
-    } finally {
-      setIsLoading(false);
     }
   }, []);
 
   return (
     <div className={styles.container}>
-      {
-        isLoading && (<h1>Loading</h1>)
-      }
       {colors.length > 0 &&
         colors.map((color, index) => <ColorBar key={index} {...color} />)}
       <div>
