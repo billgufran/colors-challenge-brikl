@@ -41,10 +41,3 @@
   background-color: #2363e4;
   box-shadow: 0 4px 15px 0 rgb(0 118 255 / 39%);
 }
-
-@media (max-width: 600px) {
-  .footer {
-    width: 100%;
-    flex-direction: column;
-  }
-}
