@@ -33,16 +33,7 @@
   background-color: #1e54c9;
 }
 
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
-  .card,
   .footer {
     border-color: #6f3fc7;
   }

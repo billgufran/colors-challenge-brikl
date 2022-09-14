@@ -36,7 +36,7 @@ const Home: NextPage = () => {
       {colors.length > 0 &&
         colors.map((color, index) => <ColorBar key={index} {...color} />)}
       <div className={styles.footer}>
-        <p>brikl - Color Challenge</p>
+        <p>brikl - Colors Challenge</p>
         <button onClick={fetchColors} className={styles.generateButton}>
           Generate Colors
         </button>
