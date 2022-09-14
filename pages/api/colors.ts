@@ -2,6 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { colorGenerators } from "lib/colorGenerators";
 import { TColor } from "types";
 
+/**
+ * To add new color space, refer to `lib/colorGenerators.ts`
+ */
+
 const DATA_LENGTH = 5;
 
 export default function handler(
