@@ -10,9 +10,8 @@ import { hexToHsl, rgbToHsl } from "./colorConverter";
  * Make sure the function return type is `Tcolor`.
  *
  * Property `hslComposition` is optional but highly suggested
- * for easier application and standardization in  the front-end.
+ * for easier application and standardization in the front-end.
  * The value should be the representation of the color in hsl space.
- * Check `lib/colorConverter.ts` for refernce.
  *
  */
 
