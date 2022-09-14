@@ -33,7 +33,8 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      {colors.length > 0 && colors.map((color) => <ColorBar {...color} />)}
+      {colors.length > 0 &&
+        colors.map((color, index) => <ColorBar key={index} {...color} />)}
       <div className={styles.footer}>
         <p>brikl - Color Challenge</p>
         <button onClick={fetchColors} className={styles.generateButton}>
