@@ -1,28 +1,45 @@
 import { TColor } from "types";
+import { hexToRgba, hslToRgba } from "./colorConverter";
 
 /**
  * To add new colorspace, create the function to
- * generate the color then call it inside `colorGenerator`.
- * Make sure the function return type is `Tcolor`
+ * generate the color then store it inside `colorGenerators`.
+ * Make sure the function return type is `Tcolor`.
+ *
+ * Property `rgbaComposition` is optional for easier application
+ * and standardization in front-end. The value should be the
+ * representation of the color in rgba space.
  */
 
 export const colorGenerators = [
   HexColorGenerator,
-  RGBColorGenerator,
-  HSLColorGenerator,
+  RgbColorGenerator,
+  HslColorGenerator,
 ];
 
 export function HexColorGenerator(): TColor {
   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
+  const [red, green, blue, alpha] = hexToRgba(randomColor);
+
   return {
     type: "hex",
     value: `#${randomColor}`,
-    composition: randomColor,
+    composition: {
+      RR: randomColor.slice(0, 2),
+      GG: randomColor.slice(2, 4),
+      BB: randomColor.slice(4, 6),
+    },
+    rgbaComposition: {
+      red,
+      green,
+      blue,
+      alpha,
+    },
   };
 }
 
-export function RGBColorGenerator(): TColor {
+export function RgbColorGenerator(): TColor {
   const red = Math.floor(Math.random() * 255);
   const green = Math.floor(Math.random() * 255);
   const blue = Math.floor(Math.random() * 255);
@@ -35,13 +52,21 @@ export function RGBColorGenerator(): TColor {
       green,
       blue,
     },
+    rgbaComposition: {
+      red,
+      green,
+      blue,
+      alpha: 1,
+    },
   };
 }
 
-export function HSLColorGenerator(): TColor {
+export function HslColorGenerator(): TColor {
   const hue = Math.floor(Math.random() * 360);
   const saturation = Math.floor(Math.random() * 100);
   const lightness = Math.floor(Math.random() * 100);
+
+  const [red, green, blue, alpha] = hslToRgba(hue, saturation, lightness);
 
   return {
     type: "hsl",
@@ -50,6 +75,12 @@ export function HSLColorGenerator(): TColor {
       hue,
       saturation,
       lightness,
+    },
+    rgbaComposition: {
+      red,
+      green,
+      blue,
+      alpha,
     },
   };
 }
