@@ -43,7 +43,7 @@ const Home: NextPage = () => {
       <div>
         <LinearProgressBar load={isLoading} width={isLoading ? "9px" : "2px"} />
         <div className={styles.footer}>
-          <p>brikl - Colors Challenge</p>
+          <p>brikl &bull; Colors Challenge</p>
           <button
             onClick={fetchColors}
             className={styles.generateButton}
