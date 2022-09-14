@@ -2,6 +2,9 @@ import { TColor } from "types";
 import { hexToHsl, rgbToHsl } from "./colorConverter";
 
 /**
+ *
+ *  =========== HOW TO ADD NEW COLOR SPACE ===========
+ *
  * To add new colorspace, create the function to
  * generate the color then store it inside `colorGenerators`.
  * Make sure the function return type is `Tcolor`.
@@ -10,6 +13,7 @@ import { hexToHsl, rgbToHsl } from "./colorConverter";
  * for easier application and standardization in  the front-end.
  * The value should be the representation of the color in hsl space.
  * Check `lib/colorConverter.ts` for refernce.
+ *
  */
 
 export const colorGenerators = [
@@ -19,17 +23,20 @@ export const colorGenerators = [
 ];
 
 export function HexColorGenerator(): TColor {
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  const randomHex = Math.floor(Math.random() * 16777215).toString(16);
+  const pad = "000000".substring(0, 6 - randomHex.length);
 
-  const [hue, saturation, lightness] = hexToHsl(randomColor);
+  const hexCode = randomHex + pad;
+
+  const [hue, saturation, lightness] = hexToHsl(hexCode);
 
   return {
     type: "hex",
-    value: `#${randomColor}`,
+    value: `#${hexCode}`,
     composition: {
-      RR: randomColor.slice(0, 2),
-      GG: randomColor.slice(2, 4),
-      BB: randomColor.slice(4, 6),
+      RR: hexCode.slice(0, 2),
+      GG: hexCode.slice(2, 4),
+      BB: hexCode.slice(4, 6),
     },
     hslComposition: {
       hue,
