@@ -38,6 +38,9 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
+      {
+        isLoading && (<h1>Loading</h1>)
+      }
       {colors.length > 0 &&
         colors.map((color, index) => <ColorBar key={index} {...color} />)}
       <div>
