@@ -1,5 +1,5 @@
 export type TColor = {
-  type: "hex" | "rgb" | "hsl";
+  type: string;
   value: string;
   composition: { [key: string]: string | number };
   hslComposition?: THslComposition;
