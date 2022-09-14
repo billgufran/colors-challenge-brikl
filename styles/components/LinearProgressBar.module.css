@@ -6,7 +6,7 @@
   width: 100%;
   background: var(--baseColor);
   background-position: 0% 0;
-  transition: height 0.15s linear;
+  transition: height 0.1s linear;
 }
 
 .progressBar--loading {
