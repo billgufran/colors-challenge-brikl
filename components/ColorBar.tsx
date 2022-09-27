@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import getFontColor from "lib/getFontColor"
 import { TColor } from "types";
 import styles from "styles/components/ColorBar.module.css";
 
 type ColorBarProps = TColor;
-
-const LIGHTNESS_THRESHOLD = 60;
 
 const ColorBar = ({ value, type, hslComposition }: ColorBarProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,12 +26,7 @@ const ColorBar = ({ value, type, hslComposition }: ColorBarProps) => {
       ref={containerRef}
       style={{
         backgroundColor,
-        color:
-          lightness === null
-            ? "inherit"
-            : lightness > LIGHTNESS_THRESHOLD
-            ? "#000"
-            : "#fff",
+        color: getFontColor(lightness),
       }}
       className={styles.card}
     >

@@ -10,9 +10,9 @@ const LinearProgressBar = ({ width = "4px", load }: LinearProgressBarProps) => {
   return (
     <div
       style={{ height: width }}
-      className={
-        styles.progressBar + ` ${load ? styles["progressBar--loading"] : ""}`
-      }
+      className={`${styles.progressBar} ${
+        load ? styles["progressBar--loading"] : ""
+      }`}
     />
   );
 };
